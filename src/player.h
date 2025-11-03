@@ -31,6 +31,7 @@ private:
     int health;
     int maxHealth;
     float speed;
+
     // Stamina attribute
     float stamina;
     float maxStamina;
