@@ -29,14 +29,7 @@ private:
     Camera* camera;
     Player* player;
 
-    sf::Clock clock;
-    sf::Time time;
-    EntityManager* entityManager;
-    Map* map;
-    Camera* camera;
-    Player* player;
-
     int coinCount = 0;
 };
 
-#endif // MAINGAME_H
+#endif // MAINGAME_Hw

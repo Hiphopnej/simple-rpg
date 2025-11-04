@@ -15,7 +15,7 @@ void UpdateCollisions(Entity* entityA, Entity* entityB) {
         coin->SetActive(0);
 
         // Increment global counter
-        MainGame* mainGame = dynamic_cast<MainGame*>(gameState.state);
+        MainGame* mainGame = dynamic_cast<MainGame*>(gameState.GetState());
         if (mainGame) {
             mainGame->IncrementCoinCount();
         }
@@ -27,9 +27,9 @@ void MainGame::Initialize(sf::RenderWindow* window) {
     this->entityManager->SetCollisionMethod(UpdateCollisions);
 
     // Add entities
-    this->entityManager->AddEntity("test", new Entity("data/gfx/test.png", 0));
     this->entityManager->AddEntity("test", new Entity("data/gfx/test.png", 1));
-    this->entityManager->Get("test")->velocity.x = 0.5;
+    this->entityManager->AddEntity("test", new Entity("data/gfx/test.png", 1));
+    //this->entityManager->Get("test")->velocity.x = 0.5;
     //this->entityManager->Get("test0")->velocity.x = 0.5;
     this->entityManager->Get("test")->setPosition(sf::Vector2f(50, 50));
     this->entityManager->Get("test0")->setPosition(sf::Vector2f(50, 300));
@@ -37,6 +37,7 @@ void MainGame::Initialize(sf::RenderWindow* window) {
     // Load Map
     this->map = new Map();
     MapLoad(this->map, "data/map/level1.json");
+    this->entityManager->SetMap(this->map);
 
     // Load Camera
     this->camera = new Camera(window);
@@ -61,6 +62,7 @@ void MainGame::Update(sf::RenderWindow* window) {
     this->player->Update(window, inputManager, timeElapsed);
     this->entityManager->Update();
     this->map->CheckCollision(this->player);
+
     this->camera->Update(window, this->map, sf::Vector2f(this->player->getPosition().x, this->player->getPosition().y));
 
     // Reloading of the map
