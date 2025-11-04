@@ -1,7 +1,7 @@
 #include "maingame.h"
 
 void UpdateCollisions(Entity* entityA, Entity* entityB) {
-    std::cout << "Collisions!" << std::endl;
+    std::cout << "Collisions!" << entityA << std::endl;
 }
 
 void MainGame::Initialize(sf::RenderWindow* window) {
@@ -10,10 +10,13 @@ void MainGame::Initialize(sf::RenderWindow* window) {
 
     // Add entities
     this->entityManager->AddEntity("test", new Entity("data/gfx/test.png"));
-    this->entityManager->AddEntity("test", new Entity("data/gfx/test.png"));
+    this->entityManager->AddEntity("test0", new Entity("data/gfx/test.png"));
+    this->entityManager->AddEntity("test1", new Entity("data/gfx/test.png"));
     this->entityManager->Get("test0")->velocity.x = 0.5;
-    this->entityManager->Get("test")->setPosition(sf::Vector2f(50, 50));
+    this->entityManager->Get("test")->setPosition(sf::Vector2f(50, 500));
     this->entityManager->Get("test0")->setPosition(sf::Vector2f(50, 300));
+    this->entityManager->Get("test1")->velocity.x = 1.0f;
+    this->entityManager->Get("test1")->setPosition(sf::Vector2f(50, 800));
 
     // Load Map
     this->map = new Map();

@@ -11,12 +11,13 @@ MapLoad::MapLoad(Map *map, std::string mapName, int update) {
         this->LoadTileSet(document, map);
     }
     this->LoadMap(document, map);
-
-//    for (int i = 0; i < 100; i++) {
-//        for (int j = 0; j < 100; j++) {
-//            std::cout << map->collision->data[i][j] << std::endl;
-//        }
-//    }
+/*
+   for (int i = 0; i < 100; i++) {
+       for (int j = 0; j < 100; j++) {
+           std::cout << map->collision->data[i][j] << std::endl;
+      }
+  }
+*/
 }
 
 void MapLoad::GetFile(std::string *content, std::string mapName) {
