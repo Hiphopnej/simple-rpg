@@ -35,6 +35,8 @@ void Player::Update(sf::RenderWindow* window, InputManager inputManager, int tim
     // Reset to normal player sprite
     // Viktor får ändra det till sin råtta om han vill
     this->Load("data/gfx/player.png");
+    // Reset scale
+    this->setScale(1.0f, 1.0f);
 
     if(isResting == true){
         // Decrease rest timer in seconds
@@ -65,6 +67,8 @@ void Player::Update(sf::RenderWindow* window, InputManager inputManager, int tim
         stamina -= 1.0f/60.0f;
         // You become the supermen(logo) while flying
         this->Load("data/gfx/superman2.png");
+        // Scale up the sprite while flying
+        this->setScale(2.0f, 2.0f);
         
         if(stamina <= 0.0f){
             // Start forced rest when stamina depletes
