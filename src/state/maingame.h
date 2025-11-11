@@ -2,7 +2,7 @@
 #define MAINGAME_H
 
 #include <iostream>
-
+#include <SFML/Graphics.hpp>
 #include "camera.h"
 #include "entitymanager.h"
 #include "gamestate.h"
@@ -13,10 +13,10 @@
 class MainGame : public GameState
 {
 public:
-    void Initialize(sf::RenderWindow* window);
-    void Update(sf::RenderWindow* window);
-    void Render(sf::RenderWindow* window);
-    void Destroy(sf::RenderWindow* window);
+    void Initialize(sf::RenderWindow* window) override;
+    void Update(sf::RenderWindow* window) override;
+    void Render(sf::RenderWindow* window) override;
+    void Destroy(sf::RenderWindow* window) override;
 
     void IncrementCoinCount();
 
@@ -29,13 +29,7 @@ private:
     Camera* camera;
     Player* player;
 
-    sf::Clock clock;
-    sf::Time time;
-    EntityManager* entityManager;
-    Map* map;
-    Camera* camera;
-    Player* player;
-
+    sf::Font font;
     int coinCount = 0;
 };
 
