@@ -32,7 +32,10 @@ void Player::Update(sf::RenderWindow* window, InputManager inputManager, int tim
     // Flight is slower but you can move over trees and other things
 
     float sprintMultiplier = 1.0f;
-    
+    // Reset to normal player sprite
+    // Viktor får ändra det till sin råtta om han vill
+    this->Load("data/gfx/player.png");
+
     if(isResting == true){
         // Decrease rest timer in seconds
         restTimer -= 1.0f/60.0f;
@@ -46,6 +49,8 @@ void Player::Update(sf::RenderWindow* window, InputManager inputManager, int tim
         sprintMultiplier = 3.0f;
         // Drain stamina per second using actual frame time
         stamina -= 1.0f/60.0f;
+        // You become the fast yellow player while sprinting
+        this->Load("data/gfx/fastPlayer.png");
         
         if(stamina <= 0.0f){
             // Start forced rest when stamina depletes
@@ -58,6 +63,8 @@ void Player::Update(sf::RenderWindow* window, InputManager inputManager, int tim
         sprintMultiplier = 2.0f;
 
         stamina -= 1.0f/60.0f;
+        // You become the supermen(logo) while flying
+        this->Load("data/gfx/superman2.png");
         
         if(stamina <= 0.0f){
             // Start forced rest when stamina depletes
@@ -74,6 +81,9 @@ void Player::Update(sf::RenderWindow* window, InputManager inputManager, int tim
         }
     }
 
+    if(isResting){
+        this->Load("data/gfx/cheese.png");
+    }
     speed = speed * sprintMultiplier;
     // Update player velocity
     this->velocity.x = inputManager.IsPressed(InputManager::Right) * speed -
