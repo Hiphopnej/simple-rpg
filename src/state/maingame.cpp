@@ -40,6 +40,11 @@ void MainGame::Initialize(sf::RenderWindow* window) {
     this->player = new Player(this->entityManager, this->map, this->camera, 100, 100);
     this->entityManager->AddEntity("Player", this->player);
 
+    this->entityManager->AddEntity("test", new Entity("data/gfx/test.png", 1));
+    this->entityManager->AddEntity("test0", new Entity("data/gfx/test.png", 1));
+    this->entityManager->Get("test")->setPosition(sf::Vector2f(50, 50));
+    this->entityManager->Get("test0")->setPosition(sf::Vector2f(50, 300));
+
     this->entityManager->AddEntity("Coin", new Coin(140, 100));
     this->entityManager->AddEntity("Coin", new Coin(200, 150));
     this->entityManager->AddEntity("Coin", new Coin(300, 200));
