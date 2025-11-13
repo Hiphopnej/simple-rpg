@@ -2,6 +2,17 @@
 
 void UpdateCollisions(Entity* entityA, Entity* entityB) {
     std::cout << "Collisions!" << std::endl;
+    if(inputManager.IsKeyBoardPressed(sf::Keyboard::C)){
+        if(entityB->isPlayer != true ){
+            entityB->velocity.x = 0;
+            entityB->status= true;
+            entityB->UpdateTexture("data/gfx/test1.png");
+        }else if (entityA->isPlayer != true){
+            entityA->velocity.x = 0;
+            entityA->status= true;
+            entityA->UpdateTexture("data/gfx/test1.png");
+        }
+    }
 }
 
 void MainGame::Initialize(sf::RenderWindow* window) {
@@ -14,6 +25,7 @@ void MainGame::Initialize(sf::RenderWindow* window) {
     this->entityManager->Get("test0")->velocity.x = 0.5;
     this->entityManager->Get("test")->setPosition(sf::Vector2f(50, 50));
     this->entityManager->Get("test0")->setPosition(sf::Vector2f(50, 300));
+
 
     // Load Map
     this->map = new Map();
@@ -34,6 +46,8 @@ void MainGame::Update(sf::RenderWindow* window) {
 
     this->player->Update(window, inputManager, timeElapsed);
     this->entityManager->Update();
+    this->map->CheckCollision(this->player);
+    
     // Check collisions
     // Turn off collision when Flight ability is active
     if(!inputManager.IsPressed(InputManager::FlightAbility)) {
@@ -52,6 +66,7 @@ void MainGame::Update(sf::RenderWindow* window) {
         std::cout << "Updating Map..." << std::endl;
         MapLoad(this->map, "data/map/level1.json", 1);
     }
+
 }
 
 void MainGame::Render(sf::RenderWindow* window) {

@@ -1,11 +1,15 @@
 #include "entity.h"
-
+#include <SFML/Graphics.hpp>
 Entity::Entity() {
     this->active = 1;
     this->texture = new sf::Texture();
+    this->isPlayer = false;
+
 }
 
 Entity::Entity(std::string fileName) {
+    this->isPlayer = false;
+    this->status = false;
     this->active = 1;
     this->texture = new sf::Texture;
     this->Load(fileName);
@@ -14,6 +18,7 @@ Entity::Entity(std::string fileName) {
 
 Entity::Entity(std::string fileName, sf::IntRect rect) {
     this->active = 1;
+    this->isPlayer = false;
     this->texture = new sf::Texture();
     this->Load(fileName, rect);
     this->setOrigin((this->texture->getSize().x / 2), (this->texture->getSize().y / 2));
@@ -51,6 +56,11 @@ int Entity::Group() {
 
 void Entity::Update() {
     this->move(this->velocity);
+}
+//för att allmänt ändra textur.//
+void Entity::UpdateTexture(std::string filePath){
+    this->texture = new sf::Texture();
+    this->Load(filePath);
 }
 
 Entity::~Entity() {
