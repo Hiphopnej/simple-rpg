@@ -198,12 +198,15 @@ void Map::Render(sf::RenderWindow *window, Layer *layer) {
     sf::Sprite tile;
     for (int y = renderHeight.x; y < renderHeight.y; y++) {
         for (int x = renderWidth.x; x < renderWidth.y; x++) {
+
+            if(y > -1 &&  y < layer->data.size()) {
+                if(x > -1 &&  x < layer->data.size()){
             index = layer->data[y][x];
+            
             if(index != 0 && index <= this->tileSet->tile.size() ) {
                 tile.setTexture(*this->tileSet->tile[index]);
                 tile.setPosition(sf::Vector2f(x * this->tileSet->tileWidth, y * this->tileSet->tileHeight));
-            if(y > -1 &&  y < layer->data.size()) {
-                if(x > -1 &&  x < layer->data.size()){
+            
                     window->draw(tile);
                 }
             }
