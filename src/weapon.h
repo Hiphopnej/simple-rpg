@@ -12,7 +12,7 @@
 class Weapon : public Entity
 {
 public:
-    Weapon(EntityManager* entityManager, Map* map, Camera* camera, float x = 0, float y = 0);
+    Weapon(Map* map, float x = 0, float y = 0);
     void Update(sf::RenderWindow *window, InputManager inputManager, int timeElapsed);
     float SetSpeed();
     int GetDamage();
@@ -21,9 +21,7 @@ public:
     ~Weapon();
 
 private:
-    EntityManager* entityManager;
     Map* map;
-    Camera* camera;
     int damage;
     float speed;
     //float direction;

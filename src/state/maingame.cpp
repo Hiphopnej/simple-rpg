@@ -30,7 +30,7 @@ void MainGame::Initialize(sf::RenderWindow* window) {
     this->entityManager->AddEntity("Player", this->player);
 
     // Load Weapon
-    this->weapon = new Weapon(this->entityManager, this->map, this->camera, 120, 90);
+    this->weapon = new Weapon(this->map, 120, 90);
     this->entityManager->AddEntity("Weapon", this->weapon);
 }
 

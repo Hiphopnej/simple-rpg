@@ -1,14 +1,11 @@
 #include "weapon.h"
 
-Weapon::Weapon(EntityManager* entityManager, Map *map, Camera *camera, float x, float y) {
-    this->entityManager = entityManager;
+Weapon::Weapon( Map *map, float x, float y) {
     this->map = map;
-    this->camera = camera;
-
     this->Load("data/gfx/OSTHYVEL.png");
     this->setPosition(x, y);
     this->setScale(-2.5, 2);
-    this->setRotation(90);
+    this->rotate(90);
     this->setOrigin(35, 0);
     this->speed = 0.00015f;
     this->damage = 10;
