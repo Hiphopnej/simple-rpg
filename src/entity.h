@@ -3,6 +3,7 @@
 
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class Entity : public sf::Sprite
 {
@@ -14,6 +15,9 @@ public:
     void Load(std::string fileName, sf::IntRect rect);
     bool Collision(Entity *entity);
     void SetActive(int active);
+    std::wstring Dialogue();
+    void setDialogue(std::vector<std::wstring> dialogue_options);
+    float calculateLength(Entity* entity);
     int Active();
     int Group();
     virtual void Update();
@@ -21,6 +25,9 @@ public:
     ~Entity();
     
     sf::Vector2f velocity;
+    bool hasSpoken = false;
+    std::wstring dialogue_option;
+
     bool status;
     bool isPlayer;
 protected:
@@ -28,6 +35,7 @@ protected:
 
 private:
     sf::Texture* texture;
+    std::vector<std::wstring> dialogue_options;
 };
 
 #endif // ENTITY_H
