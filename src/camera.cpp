@@ -1,7 +1,9 @@
 #include "camera.h"
 
 Camera::Camera(sf::RenderWindow *window) {
-    this->view = sf::View(sf::FloatRect(0, 0, 1920, 1080));
+    
+    this->view = sf::View(sf::FloatRect(0, 0, sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height));
+    this->view.zoom(0.8);
     window->setView(view);
 }
 
@@ -11,7 +13,9 @@ void Camera::MoveCamera(sf::RenderWindow *window, sf::Vector2f move) {
 }
 
 void Camera::SetCenter(sf::RenderWindow *window, sf::Vector2f position) {
+    
     this->view.setCenter(position.x, position.y);
+    
     window->setView(view);
 }
 

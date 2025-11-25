@@ -14,7 +14,7 @@ int main()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 16;
 
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), gameName, windowStyle, settings);
+    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), gameName, windowStyle, settings);
     window.clear(sf::Color(0, 0, 0));
     window.display();
     //window.setVerticalSyncEnabled(true);
@@ -53,7 +53,7 @@ int main()
 
                         
 
-                        window.create(sf::VideoMode(1920, 1080), gameName, windowStyle, settings);
+                        window.create(sf::VideoMode::getDesktopMode(), gameName, windowStyle, settings);
                         window.setVerticalSyncEnabled(true);
                     }
                 }
