@@ -43,15 +43,18 @@ void MainGame::Update(sf::RenderWindow* window) {
     this->weapon->Update(window, inputManager, timeElapsed);
     this->entityManager->Update();
     this->map->CheckCollision(this->player);
-    this->map->CheckCollision(this->weapon);
     this->camera->Update(window, this->map, sf::Vector2f(this->player->getPosition().x, this->player->getPosition().y));
-    this->camera->Update(window, this->map, sf::Vector2f(this->weapon->getPosition().x, this->weapon->getPosition().y));
+
+    this->weapon->setPosition(this->player->getPosition().x + 20, this->player->getPosition().y - 10);
+
 
     if(this->player->getPosition().x > 1510.0f) {
         std::cout << "You Win!" << std::endl;
         // next map code here
         MapLoad(this->map, "data/map/level2.json");
     }
+
+
 
     // Reloading of the map
     if(inputManager.IsPressed(InputManager::LoadMap)
