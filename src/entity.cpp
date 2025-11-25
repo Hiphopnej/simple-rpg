@@ -1,4 +1,7 @@
 #include "entity.h"
+#include <random>
+#include <vector>
+#include <cmath>
 
 Entity::Entity() {
     this->active = 1;
@@ -41,6 +44,15 @@ void Entity::SetActive(int active) {
     this->active = active;
 }
 
+void Entity::setDialogue(std::vector<std::wstring> dialogue_options) {
+    this->dialogue_options = dialogue_options;
+}
+
+float Entity::calculateLength(Entity* entity) {
+    float length = sqrt(pow(this->getPosition().x  - entity->getPosition().x,2) + pow(this->getPosition().y - entity->getPosition().y, 2));
+    return length;
+}
+
 int Entity::Active() {
     return this->active;
 }
@@ -55,4 +67,18 @@ void Entity::Update() {
 
 Entity::~Entity() {
     delete this->texture;
+}
+
+// Will output a random dialogue from the dialogue_options vector
+std::wstring Entity::Dialogue() {
+
+    if (!hasSpoken) {
+        std::mt19937 eng(time(0));
+        std::uniform_int_distribution<int> number(0, 5);
+        int random_number = number(eng);
+        dialogue_option = dialogue_options[random_number];
+
+        hasSpoken = true;
+    }
+    return dialogue_option;
 }
