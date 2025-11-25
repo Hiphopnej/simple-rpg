@@ -51,6 +51,8 @@ void MainGame::Update(sf::RenderWindow* window) {
         std::cout << "You Win!" << std::endl;
         // next map code here
         MapLoad(this->map, "data/map/level2.json");
+        this->player->setPosition(sf::Vector2f(100, 100));
+        this->weapon->setPosition(sf::Vector2f(120, 90));
     }
 
     // Reloading of the map

@@ -42,7 +42,7 @@ void Map::CheckCollision(Entity *entity) {
         for (int x = checkWidth.x; x < checkWidth.y; x++) {
             index = this->collision->data[y][x];
             // If collision tile
-            if(index != 0) {
+            if(index >= 0 && index < tileSet->tile.size()) {
                 tile.setTexture(*this->tileSet->tile[index]);
                 tile.setPosition(sf::Vector2f(x * this->tileSet->tileWidth, y * this->tileSet->tileHeight));
                 // Rotate oblique collisions
