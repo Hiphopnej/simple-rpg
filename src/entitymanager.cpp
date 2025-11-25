@@ -90,6 +90,7 @@ void EntityManager::Render(sf::RenderWindow* window, Camera *camera) {
                 shape.setFillColor(sf::Color(255, 255, 255));
                 // Vet inte varför men helt plötsligt är nu stum fixa nästa gång
                 shape.setPosition(ShapePosition);
+                /*
                 if (iterator.second->Dialogue() == L"Jag hörde att du fick en osthjul i \n huvudet under en klar natt. Är det därför \n du tror att månen är gjord av ost?") {
                     dialogue.setPosition(ShapePosition.x - 400, ShapePosition.y + 60);
                 } else if (iterator.second->Dialogue() == L"Jag hörde att du inte tycker om färgen blå,\n är det på grund av blåmögelost?") {
@@ -99,6 +100,19 @@ void EntityManager::Render(sf::RenderWindow* window, Camera *camera) {
                 } else {
                     dialogue.setPosition(ShapePosition.x - 50, ShapePosition.y + 40);
                 }
+                */
+                int numOfStringTerminator = 0;
+                int characterSize = dialogue.getCharacterSize();
+                std::string dialogueString = dialogue.getString();
+                // comparison of integer expressions of different signedness: 'int' and 'std::__cxx11::basic_string<char>::size_type' {aka 'long long unsigned int'}
+                // >:(
+                for (long long unsigned int i = 0; i < dialogueString.length(); i++) {
+                    if (dialogueString[i] == '\n') {
+                        numOfStringTerminator += 5;
+                    }
+                }
+                
+                dialogue.setPosition(ShapePosition.x - (10 * (characterSize - (characterSize / 2) )), ShapePosition.y + numOfStringTerminator);
 
                 window->draw(dialogue);
             }
