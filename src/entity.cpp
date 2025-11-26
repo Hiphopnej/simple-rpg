@@ -94,10 +94,13 @@ Entity::~Entity() {
 
 // Will output a random dialogue from the dialogue_options vector
 std::wstring Entity::Dialogue() {
-
+    if(this->dialogue_options.size() == 0) {
+        return L"";
+    }
+    
     if (!hasSpoken) {
         std::mt19937 eng(time(0));
-        std::uniform_int_distribution<int> number(0, 5);
+        std::uniform_int_distribution<int> number(0, this->dialogue_options.size());
         int random_number = number(eng);
         dialogue_option = dialogue_options[random_number];
 
