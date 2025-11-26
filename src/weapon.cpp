@@ -12,20 +12,6 @@ Weapon::Weapon( Map *map, float x, float y) {
 }
 
 void Weapon::Update(sf::RenderWindow* window, InputManager inputManager, int timeElapsed) {
-    float speed = this->speed * timeElapsed;
-    // Update weapon velocity
-    this->velocity.x = inputManager.IsPressed(InputManager::Right) * speed -
-                       inputManager.IsPressed(InputManager::Left) * speed;
-    this->velocity.y = inputManager.IsPressed(InputManager::Down) * speed -
-                       inputManager.IsPressed(InputManager::Up) * speed;
-
-    // Set correct speed on diagonal movement
-    if((this->velocity.x == speed || this->velocity.x == -speed)
-    && (this->velocity.y == speed || this->velocity.y == -speed)) {
-        this->velocity.x *= .75;
-        this->velocity.y *= .75;
-    }
-
     if(this->velocity.x > 0) {
         this->setScale(-2.5, 2.65);
         this->setRotation(-270);

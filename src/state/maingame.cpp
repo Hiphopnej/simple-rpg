@@ -103,6 +103,11 @@ void MainGame::Update(sf::RenderWindow* window) {
     this->clock.restart();
 
     this->player->Update(window, inputManager, timeElapsed);
+
+    // copy position and velocity from player to weapon
+    this->weapon->setPosition(this->player->getPosition());
+    this->weapon->velocity = this->player->velocity;
+    
     this->weapon->Update(window, inputManager, timeElapsed);
     this->entityManager->Update();
     this->map->CheckCollision(this->player);
