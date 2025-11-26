@@ -77,6 +77,10 @@ void Entity::UpdateTexture(std::string filePath){
 Entity::~Entity() {
     if(this->texture) {
         delete this->texture;
+
+        // several entities might have the same texture pointer
+        // set to null so that textures are freed only once
+        this->texture = nullptr;
     }
 }
 
